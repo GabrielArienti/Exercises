@@ -4,6 +4,7 @@ from tkinter import ttk
 janela = Tk()
 janela.title('Calculadora de Idade')
 janela.geometry("310x400")
+janela.attributes('-alpha', 0.9)
 
 # Cores
 cor1 = "#3b3b3b"
