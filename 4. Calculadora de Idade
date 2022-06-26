@@ -1,21 +1,27 @@
 from tkinter import *
 from tkinter import ttk
+from awesometkinter import *
+import awesometkinter as atk
 
 janela = Tk()
 janela.title('Calculadora de Idade')
 janela.geometry("310x400")
-janela.attributes('-alpha', 0.9)
+janela.attributes('-alpha', 0.95)
+
 
 # Cores
-cor1 = "#3b3b3b"
+cor1 = "#121212"
+cor2 = "#f5f5f5"
+cor3 = "#000000"
 
 # Frames
 frame_cima = Frame(janela, width=310, height=140,
                    pady=0, padx=0, relief=FLAT, bg=cor1)
 frame_cima.grid(row=0, column=0)
 
-frame_baixo = Frame(janela, width=310, height=140,
-                    pady=0, padx=0, relief=FLAT, bg=cor1)
-frame_baixo.grid(row=0, column=0)
+frame_baixo = Frame(janela, width=310, height=400,
+                    pady=0, padx=0, relief=FLAT, bg=cor3)
+frame_baixo.grid(row=1, column=0)
+
 
 janela.mainloop()
