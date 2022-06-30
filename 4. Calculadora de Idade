@@ -34,5 +34,10 @@ l_calculadora = Label(frame_cima, text="De Idade", width=25, height=1,
                       padx=0, relief=FLAT, anchor="center", font=('Raleway 30 bold italic'), fg=cor4, bg=cor3)
 l_calculadora.place(x=-148, y=55)
 
+l_data_inicial = Label(frame_baixo, text="Data de Hoje", height=1,
+                       padx=0, pady=0, relief=FLAT, anchor=NW, font=('Raleway 11'), fg=cor2, bg=cor1)
+l_data_inicial.place(x=50, y=30)
 
-janela.mainloop()
+l_data_nascimento = Label(frame_baixo, text="Nascimento", height=1,
+                          padx=0, pady=0, relief=FLAT, anchor=NW, font=('Raleway 11'), fg=cor2, bg=cor1)
+l_data_nascimento.place(x=50, y=60)
