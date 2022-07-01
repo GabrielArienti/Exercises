@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 from tkcalendar import Calendar, DateEntry
+from dateutil.relativedelta import relativedelta
+from datetime import date
 
 janela = Tk()
 janela.title('Calculadora de Idade')
@@ -23,6 +25,27 @@ frame_baixo = Frame(janela, width=310, height=300,
                     pady=0, padx=0, relief=FLAT, bg=cor1)
 frame_baixo.grid(row=1, column=0)
 
+# FUNÇÃO CALCULAR
+
+
+def calcular():
+    atual = cal_1.get()
+    nascimento = cal_2.get()
+
+    dia_1, mes_1, ano_1 = [int(f) for f in atual.split('/')]
+    data_atual = date(ano_1, mes_1, dia_1)
+
+    dia_2, mes_2, ano_2 = [int(f) for f in nascimento.split('/')]
+    data_nascimento = date(ano_2, mes_2, dia_2)
+
+    idade_ano = relativedelta(data_atual, data_nascimento).years
+    idade_mes = relativedelta(data_atual, data_nascimento).months
+    idade_dia = relativedelta(data_atual, data_nascimento).days
+
+    l_app_anos['text'] = idade_ano
+    l_app_meses['text'] = idade_mes
+    l_app_dias['text'] = idade_dia
+
 
 # Criando Labels
 l_calculadora = Label(frame_cima, text="CALCULADORA", width=25, height=1,
@@ -33,7 +56,7 @@ l_calculadora = Label(frame_cima, text="De Idade", width=25, height=1,
                       padx=0, relief=FLAT, anchor="center", font=('Raleway 30 bold italic'), fg=cor4, bg=cor3)
 l_calculadora.place(x=-148, y=55)
 
-
+# DATAS
 l_data_inicial = Label(frame_baixo, text="Data de Hoje", height=1,
                        padx=0, pady=0, relief=FLAT, anchor=NW, font=('Raleway 11'), fg=cor2, bg=cor1)
 l_data_inicial.place(x=50, y=30)
@@ -42,7 +65,7 @@ l_data_nascimento = Label(frame_baixo, text="Nascimento", height=1,
                           padx=0, pady=0, relief=FLAT, anchor=NW, font=('Raleway 11'), fg=cor2, bg=cor1)
 l_data_nascimento.place(x=50, y=60)
 
-
+# CALENDÁRIOS
 cal_1 = DateEntry(frame_baixo, width=13, bg='darkblue', fg=cor2,
                   borderwidth=2, date_pattern='dd/mm/y', y=2022)
 cal_1.place(x=170, y=30)
@@ -51,13 +74,36 @@ cal_2 = DateEntry(frame_baixo, width=13, bg='darkblue', fg=cor2,
                   borderwidth=2, date_pattern='dd/mm/y', y=2022)
 cal_2.place(x=170, y=60)
 
-
-l_app_anos = Label(frame_baixo, text="27", height=1,
+# MOSTRADOR
+l_app_anos = Label(frame_baixo, text="--", height=1,
                    padx=0, pady=0, relief=FLAT, anchor='center', font=('Raleway 19 bold'), fg=cor2, bg=cor1)
 l_app_anos.place(x=60, y=135)
 
-l_app_nome = Label(frame_baixo, text="Anos", height=1,
+l_app_nomeanos = Label(frame_baixo, text="Anos", height=1,
+                       padx=0, pady=0, relief=FLAT, anchor='center', font=('Raleway 11 italic'), fg=cor2, bg=cor1)
+l_app_nomeanos.place(x=56, y=165)
+
+
+l_app_meses = Label(frame_baixo, text="--", height=1,
+                    padx=0, pady=0, relief=FLAT, anchor='center', font=('Raleway 19 bold'), fg=cor2, bg=cor1)
+l_app_meses.place(x=145, y=135)
+
+l_app_nomemeses = Label(frame_baixo, text="Meses", height=1,
+                        padx=0, pady=0, relief=FLAT, anchor='center', font=('Raleway 11 italic'), fg=cor2, bg=cor1)
+l_app_nomemeses.place(x=130, y=165)
+
+
+l_app_dias = Label(frame_baixo, text="--", height=1,
+                   padx=0, pady=0, relief=FLAT, anchor='center', font=('Raleway 19 bold'), fg=cor2, bg=cor1)
+l_app_dias.place(x=215, y=135)
+
+l_app_nome = Label(frame_baixo, text="Dias", height=1,
                    padx=0, pady=0, relief=FLAT, anchor='center', font=('Raleway 11 italic'), fg=cor2, bg=cor1)
-l_app_nome.place(x=56, y=165)
+l_app_nome.place(x=215, y=165)
+
+# Botão Calcular
+b_calcular = Button(frame_baixo, command=calcular, text="Calcular", height=1, width=20,
+                    relief=RAISED, overrelief=RIDGE, font=('Raleway 11 bold'), fg=cor2, bg=cor4)
+b_calcular.place(x=60, y=210)
 
 janela.mainloop()
