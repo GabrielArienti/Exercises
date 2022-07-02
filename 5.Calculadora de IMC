@@ -1,0 +1,14 @@
+from tkinter import *
+from tkinter import ttk
+
+# Cores
+co0 = "#444466"  # Preta
+co1 = "#feffff"  # branca
+co2 = "#4065a1"  # vermelha
+
+janela = Tk
+janela.title('')
+janela.geometry('295x230')
+janela.attributes('-alpha', 0.9, bg=co1,)
+
+janela.mainloop()
