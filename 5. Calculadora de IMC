@@ -11,4 +11,13 @@ janela.title('')
 janela.geometry('295x230')
 janela.attributes('-alpha', 0.9, bg=co1,)
 
+frame_cima = Frame(janela, width=295, height=50,bg=co1, pady=0, padx=0, relief="flat",)
+frame_cima.grid(row=0, column=0, sticky=NSEW)
+ 
+frame_baixo = Frame(janela, width=295, height=200,bg=co1, pady=0, padx=0, relief="flat",)
+frame_baixo.grid(row=1, column=0, sticky=NSEW)
+ 
+style = ttk.Style(janela)
+style.theme_use("clam")
+
 janela.mainloop()
