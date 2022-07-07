@@ -65,4 +65,7 @@ def calcular():
         
     l_resultado['text'] = "{:.{}f}".format( resultado, 2 )
 
+b_calcular = Button(frame_baixo,command=calcular, text="Calcular",width=34, height=1, overrelief=SOLID,  bg=co2, fg="white", font=('Ivy 10 bold'), anchor="center", relief=RAISED )
+b_calcular.grid(row=4, column=0,  sticky=NSEW, pady=60, padx=5, columnspan=30)
+
 janela.mainloop()
