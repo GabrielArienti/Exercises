@@ -11,7 +11,7 @@ co4 = "#faef19"  # Amarelo
 janela = Tk()
 janela.title("Calculadora de IMC")
 janela.geometry('295x230')
-janela.configure(bg=co1)
+janela.configure(bg=co0)
 
 
 # Função calcular
