@@ -1,0 +1,32 @@
+from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
+
+# Cores do projeto
+cor_preto = "#141414"
+cor_branco = "#f5f2f2"
+cor_laranja = "#ffb303"
+
+janela = Tk()
+janela.title("Compressor de Imagem")
+janela.geometry("400x250")
+janela.configure(bg=cor_preto)
+janela.attributes("-alpha", 0.95)
+
+# Frame inicial
+frame_principal = Frame(janela, width=400, height=250,
+                        relief=FLAT, bg=cor_preto)
+frame_principal.grid(row=0, column=0, sticky=NSEW)
+
+label_tituloapp = Label(frame_principal, text="Compressor de Imagem", width=24, height=1, anchor=CENTER,
+                        pady=7, padx=10, font="Raleway 19 bold", relief=FLAT, bg=cor_preto, fg=cor_branco)
+label_tituloapp.grid(row=0, column=0, columnspan=2, pady=1, sticky=NSEW)
+
+botao_novo = Button(frame_principal, text="+ Nova", width=40, height=1, anchor=CENTER,
+                    font="Raleway ", relief=RAISED, bg=cor_laranja, fg=cor_preto)
+botao_novo.grid(row=1, column=0, columnspan=2, pady=1, )
+
+# Entry
+
+
+janela.mainloop()
