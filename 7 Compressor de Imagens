@@ -46,7 +46,9 @@ entrada_altura.place(x=40, y=160)
 entrada_largura = Entry(frame_principal, width=19, justify=CENTER)
 entrada_largura.place(x=240, y=160)
 
-
-
+# Botão conversão
+botao_convert = Button(frame_principal, text="Converter", width=10, height=1, anchor=CENTER,
+                       font="Raleway 14 bold", relief=RAISED, bg=cor_laranja, fg=cor_preto)
+botao_convert.place(x=135, y=200)
 
 janela.mainloop()
