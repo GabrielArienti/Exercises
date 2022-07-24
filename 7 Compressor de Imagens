@@ -1,6 +1,10 @@
+from decimal import InvalidOperation
+from multiprocessing.sharedctypes import Value
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+from PIL import Image
+from tkinter.filedialog import *
 
 # Cores do projeto
 cor_preto = "#141414"
@@ -19,36 +23,68 @@ frame_principal = Frame(janela, width=400, height=250,
 frame_principal.grid(row=0, column=0)
 
 
+def novo():
+    # Imagem
+    ficheiro = askopenfilename()
+    img = Image.open(ficheiro)
+
+    def converter():
+        altura = int(entrada_altura.get())
+        largura = int(entrada_largura.get())
+
+        novo_valor = (altura, largura)
+        nova_img = img.resize(novo_valor)
+
+        img_salvar = asksaveasfilename()
+        nova_img.save(img_salvar + ".JPG")
+
+        messagebox.showinfo("Concluído", "Conversão realizada com sucesso")
+
+        info_imagem.destroy()
+        nova_altura.destroy()
+        nova_largura.destroy()
+        botao_convert.destroy()
+        entrada_altura.destroy()
+        entrada_largura.destroy()
+
+    # Captando tamanho da imagem original.
+    img_altura, img_largura = img.size
+
+    info_imagem = Label(frame_principal, text="Dimensoes originais: " + str(img_altura) + "x" + str(img_largura), height=2, anchor=CENTER,
+                        font="Raleway 12 italic bold", relief=FLAT, bg=cor_preto, fg=cor_branco)
+    info_imagem.place(x=90, y=90)
+
+    # Entry
+
+    nova_altura = Label(frame_principal, text="Digite a nova largura", width=24, height=1, anchor=CENTER,
+                        font="Raleway 10 bold", relief=FLAT, bg=cor_preto, fg=cor_branco)
+    nova_altura.place(x=00, y=140)
+
+    nova_largura = Label(frame_principal, text="Digite a nova altura", width=24, height=1, anchor=CENTER,
+                         font="Raleway 10 bold", relief=FLAT, bg=cor_preto, fg=cor_branco)
+    nova_largura.place(x=200, y=140)
+
+    entrada_altura = Entry(frame_principal, width=19, justify=CENTER)
+    entrada_altura.place(x=40, y=160)
+
+    entrada_largura = Entry(frame_principal, width=19, justify=CENTER)
+    entrada_largura.place(x=240, y=160)
+
+    # Botão conversão
+    botao_convert = Button(frame_principal, command=converter, text="Converter", width=10, height=1, anchor=CENTER,
+                           font="Raleway 14 bold", relief=RAISED, bg=cor_laranja, fg=cor_preto)
+    botao_convert.place(x=135, y=200)
+
+
 # Label
 label_tituloapp = Label(frame_principal, text="Compressor de Imagem", width=24, height=1, anchor=CENTER,
                         pady=7, padx=10, font="Raleway 19 bold", relief=FLAT, bg=cor_preto, fg=cor_branco)
 label_tituloapp.place(x=10, y=0)
 
-botao_novo = Button(frame_principal, text="+ Nova", width=40, height=1, anchor=CENTER,
+botao_novo = Button(frame_principal, command=novo, text="+ Nova", width=40, height=1, anchor=CENTER,
                     font="Raleway ", relief=RAISED, bg=cor_laranja, fg=cor_preto)
 botao_novo.place(x=0, y=50)
 
 
-# Entry
-
-nova_altura = Label(frame_principal, text="Digite a nova altura", width=24, height=1, anchor=CENTER,
-                    font="Raleway 10 bold", relief=FLAT, bg=cor_preto, fg=cor_branco)
-nova_altura.place(x=00, y=140)
-
-
-nova_largura = Label(frame_principal, text="Digite a nova largura", width=24, height=1, anchor=CENTER,
-                     font="Raleway 10 bold", relief=FLAT, bg=cor_preto, fg=cor_branco)
-nova_largura.place(x=200, y=140)
-
-entrada_altura = Entry(frame_principal, width=19, justify=CENTER)
-entrada_altura.place(x=40, y=160)
-
-entrada_largura = Entry(frame_principal, width=19, justify=CENTER)
-entrada_largura.place(x=240, y=160)
-
-# Botão conversão
-botao_convert = Button(frame_principal, text="Converter", width=10, height=1, anchor=CENTER,
-                       font="Raleway 14 bold", relief=RAISED, bg=cor_laranja, fg=cor_preto)
-botao_convert.place(x=135, y=200)
-
 janela.mainloop()
+
