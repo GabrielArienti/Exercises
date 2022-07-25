@@ -39,5 +39,18 @@ frame_esq_baixo = Frame(frame_esquerda, width=300, height=175,
                         relief=FLAT, bg=cor_branco)
 frame_esq_baixo.grid(row=1, column=0, sticky=NSEW)
 
+# Botão
+
+botao_novo = Button(frame_esq_cima, text="Novo", width=10, height=1,
+                    bg=cor_azul, fg=cor_branco, font="15", anchor=CENTER, relief=FLAT, overrelief=RAISED)
+botao_novo.grid(row=0, column=0, sticky=NSEW, pady=1)
+
+botao_remover = Button(frame_esq_cima, text="Remover", width=10, height=1,
+                       bg=cor_vermelho, fg=cor_branco, font="15", anchor=CENTER, relief=FLAT, overrelief=RAISED)
+botao_remover.grid(row=0, column=1, sticky=NSEW, pady=1)
+
+botao_atualizar = Button(frame_esq_cima, text="Atualizar", width=10, height=1,
+                         bg=cor_amarelo, fg=cor_preto, font="15", anchor=CENTER, relief=FLAT, overrelief=RAISED)
+botao_atualizar.grid(row=0, column=2, sticky=NSEW, pady=1)
 
 janela.mainloop()
