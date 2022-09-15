@@ -1,0 +1,63 @@
+import java.text.NumberFormat;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        final byte MESES_DO_ANO = 12;
+        final byte PORCENTAGEM = 100;
+
+        int valorTotal = 0;
+        float jurosMensais = 0;
+        int numeroDePagamentos = 0;
+
+
+        System.out.println("\nCalculadora de Empréstimo");
+        System.out.println("Desenvolvida como projeto para programação em Java.\n");
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("Valor total desejado \n(min R$1 mil - max R$1 milhão):");
+            valorTotal = scanner.nextInt();
+            if (valorTotal >= 1000 && valorTotal <=1_000_000)
+                break;
+            else
+                System.out.println("Digite um valor válido");
+        }
+
+        while (true) {
+            System.out.print("Juros anuais:");
+            float jurosAnuais = scanner.nextFloat();
+            if (jurosAnuais >= 0.5 && jurosAnuais <=100) {
+                jurosMensais = (jurosAnuais / PORCENTAGEM) / MESES_DO_ANO;
+                break;
+            }
+            else
+                System.out.println("Digite um valor válido");
+        }
+
+        while(true) {
+            System.out.print("Em quantos anos pretende pagar:");
+            byte anos = scanner.nextByte();
+            if (anos >= 1 && anos <= 50) {
+                numeroDePagamentos = anos * MESES_DO_ANO;
+                break;
+            }
+            else System.out.println("Digite um valor válido (entre 1 e 50 anos): ");
+        }
+        double valorMensal = valorTotal
+                * (jurosMensais * Math.pow(1 + jurosMensais, numeroDePagamentos))
+                / (Math.pow(1 + jurosMensais, numeroDePagamentos) - 1);
+
+        String valorMensalFormatado = NumberFormat.getCurrencyInstance().format(valorMensal);
+        System.out.println("Parcelas mensais no valor de: " + valorMensalFormatado);
+
+        int totalPago = (int)valorMensal * numeroDePagamentos;
+        String totalFormatado = NumberFormat.getCurrencyInstance().format(totalPago);
+        System.out.println("\nO valor total a ser pago é de:" + totalFormatado);
+
+        int valorDosJuros = totalPago - valorTotal;
+        String valorJurosFormatado = NumberFormat.getCurrencyInstance().format(valorDosJuros);
+        System.out.println("Total de juros: " + valorJurosFormatado);
+
+    }
+}
